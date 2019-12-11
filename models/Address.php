@@ -16,14 +16,14 @@ use Yii;
  * @property int|null $house_number
  * @property int|null $flat_number
  */
-class Adress extends \yii\db\ActiveRecord
+class Address extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'adress';
+        return 'address';
     }
 
     /**

@@ -13,7 +13,7 @@ class m191211_163101_user extends Migration
      */
     public function safeUp()
     {
-        $this->createTable("user",[
+        $this->createTable('user',[
             'id' => Schema::TYPE_UPK,
             'login' => Schema::TYPE_STRING,
             'password' => Schema::TYPE_STRING,
@@ -30,23 +30,6 @@ class m191211_163101_user extends Migration
      */
     public function safeDown()
     {
-        echo "m191211_163101_user cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('user');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191211_163101_user cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

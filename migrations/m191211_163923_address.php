@@ -6,14 +6,14 @@ use yii\db\Schema;
 /**
  * Class m191211_163923_adress
  */
-class m191211_163923_adress extends Migration
+class m191211_163923_address extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('adress', [
+        $this->createTable('address', [
             'id' => Schema::TYPE_UPK,
             'user_id' => Schema::TYPE_INTEGER,
             'index' => Schema::TYPE_STRING,
@@ -30,23 +30,6 @@ class m191211_163923_adress extends Migration
      */
     public function safeDown()
     {
-        echo "m191211_163923_adress cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('address');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191211_163923_adress cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

@@ -3,8 +3,8 @@
 return [
     'class' => \yii\db\Connection::class,
     'dsn' => 'pgsql:host=localhost;dbname=testtask',
-    'username' => 'testTask',
-    'password' => 'testTask',
+    'username' => 'postgres',
+    'password' => '',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
