@@ -37,7 +37,13 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['create_date'], 'safe'],
-            [['login', 'password', 'name', 'surname', 'sex', 'email'], 'string', 'max' => 255],
+            //[['login', 'password', 'name', 'surname', 'sex', 'email']],
+            [['login'],'string', 'min' => 4, 'max' => 255],
+            [['password'],'string', 'min' => 6, 'max' => 255],
+            [['name'],'string', 'max' => 255],
+            //[['surname'], 'filter'=>'ucfirst'],
+            //[['email'], 'unique', 'email'],
+
         ];
     }
 

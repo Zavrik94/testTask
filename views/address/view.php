@@ -8,10 +8,11 @@ use yii\widgets\DetailView;
 
 $this->title = $model->id;
 \yii\web\YiiAsset::register($this);
+
 ?>
 <div class="address-view">
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update', ['update', 'id' => $model->id, 'user_id' => Yii::$app->request->get('user_id')], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [

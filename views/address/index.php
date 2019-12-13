@@ -28,7 +28,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams, Yii::$app-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'class' => 'yii\grid\ActionColumn',
+        'class' => \yii\grid\ActionColumn::class,
         'columns' => [
             // ['class' => SerialColumn::class],
 

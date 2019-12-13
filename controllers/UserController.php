@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\Address;
 use Yii;
 use app\models\User;
 use app\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -64,18 +67,22 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
+        $modelUser = new User();
+        $modelAddress = new Address();
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($modelUser->load(Yii::$app->request->post()) &&  $modelAddress->load(Yii::$app->request->post())) {
 
-            $model->create_date = 'now()';
-            $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            $modelUser->create_date = 'now()';
+            $modelUser->password = Yii::$app->getSecurity()->generatePasswordHash($modelUser->password);
+            $modelUser->save();
+            $modelAddress->user_id = $modelUser->id;
+            $modelAddress->save();
+            return $this->redirect(['view', 'id' => $modelUser->id]);
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'modelUser' => $modelUser,
+            'modelAddress' => $modelAddress
         ]);
     }
 
