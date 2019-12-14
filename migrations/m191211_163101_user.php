@@ -14,14 +14,14 @@ class m191211_163101_user extends Migration
     public function safeUp()
     {
         $this->createTable('user',[
-            'id' => Schema::TYPE_UPK,
-            'login' => Schema::TYPE_STRING,
-            'password' => Schema::TYPE_STRING,
-            'name' => Schema::TYPE_STRING,
-            'surname' => Schema::TYPE_STRING,
-            'sex' => Schema::TYPE_STRING,
-            'create_date' => Schema::TYPE_TIMESTAMP,
-            'email' => Schema::TYPE_STRING
+            'id' => $this->primaryKey(),
+            'login' =>  $this->string()->unique(),
+            'password' =>  $this->string(),
+            'name' =>  $this->string(),
+            'surname' =>  $this->string(),
+            'sex' =>  $this->string(),
+            'create_date' => $this->timestamp(),
+            'email' =>  $this->string()->unique()
         ]);
     }
 

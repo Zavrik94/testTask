@@ -14,14 +14,14 @@ class m191211_163923_address extends Migration
     public function safeUp()
     {
         $this->createTable('address', [
-            'id' => Schema::TYPE_UPK,
-            'user_id' => Schema::TYPE_INTEGER,
-            'index' => Schema::TYPE_STRING,
-            'country' => Schema::TYPE_STRING,
-            'city' => Schema::TYPE_STRING,
-            'street' => Schema::TYPE_STRING,
-            'house_number' => Schema::TYPE_INTEGER,
-            'flat_number' => Schema::TYPE_INTEGER
+            'id' => $this->primaryKey(),
+            'user_id' => $this->integer(),
+            'index' =>  $this->string(),
+            'country' =>  $this->string(),
+            'city' =>  $this->string(),
+            'street' =>  $this->string(),
+            'house_number' =>  $this->integer(),
+            'flat_number' => $this->integer()
         ]);
     }
 
