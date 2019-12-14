@@ -15,6 +15,7 @@ use Yii;
  * @property string|null $sex
  * @property string|null $create_date
  * @property string|null $email
+ * @property string|null $new_password
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -41,6 +42,7 @@ class User extends \yii\db\ActiveRecord
             [['login'],'string', 'min' => 4, 'max' => 255],
             [['password'],'string', 'min' => 6, 'max' => 255],
             [['name'],'string', 'max' => 255],
+            [['login', 'email'], 'unique', 'targetClass' => self::className(), 'message' => '{attribute}:{value} already exists!']
             //[['surname'], 'filter'=>'ucfirst'],
             //[['email'], 'unique', 'email'],
 

@@ -58,7 +58,7 @@ class AddressController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['//user/view', 'id' => $model->id]);
+            return $this->redirect(['//user/view', 'id' => $model->user_id]);
         }
 
         return $this->render('update', [

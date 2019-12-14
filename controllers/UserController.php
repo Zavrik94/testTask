@@ -74,19 +74,26 @@ class UserController extends Controller
 
             $modelUser->create_date = 'now()';
             $modelUser->password = Yii::$app->getSecurity()->generatePasswordHash($modelUser->password);
-            $modelUser->save();
             $modelAddress->user_id = $modelUser->id;
-            $modelAddress->save();
-            return $this->redirect(['view', 'id' => $modelUser->id]);
+            if ($modelUser->validate() && $modelUser->save() && $modelAddress->save()) {
+                return $this->redirect(['view', 'id' => $modelUser->id]);
+            }
+            else
+                return $this->render('create', [
+                    'modelUser' => $modelUser,
+                    'modelAddress' => $modelAddress,
+                    'isUpdate' => false
+                ]);
         }
 
         return $this->render('create', [
             'modelUser' => $modelUser,
-            'modelAddress' => $modelAddress
+            'modelAddress' => $modelAddress,
+            'isUpdate' => false
         ]);
     }
 
-    /**
+    /*
      * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -99,13 +106,23 @@ class UserController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
-            $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->password != '')
+                $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+            else
+                $model->password = $this->findModel($id)->password;
+            if ($model->save())
+                return $this->redirect(['view', 'id' => $model->id]);
+            else
+                return $this->render('update', [
+                    'model' => $model,
+                    'isUpdate' => true
+                ]);
         }
 
+        $model->password = '';
         return $this->render('update', [
             'model' => $model,
+            'isUpdate' => true
         ]);
     }
 

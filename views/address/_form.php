@@ -13,9 +13,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'index')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'index')->textInput(['maxlength' => true, 'type' => 'number']) ?>
 
-    <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'country')->textInput(['maxlength' => true, 'style' => 'text-transform: uppercase']) ?>
 
     <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
 

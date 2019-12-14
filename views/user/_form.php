@@ -7,13 +7,14 @@ use yii\bootstrap\ActiveForm;
 /* @var $modelUser app\models\User */
 /* @var $modelAddress app\models\Address */
 /* @var $form yii\widgets\ActiveForm */
+$action = $isUpdate ? 'update?id='.Yii::$app->request->get('id') : 'create';
 ?>
 
 <div class="user-form">
 
     <?php $form = ActiveForm::begin([
             'layout' => 'horizontal',
-            'action' => ['create'],
+            'action' => [$action],
             'method' => 'post',
             'fieldConfig' => [
                 'horizontalCssClasses' => [
@@ -29,9 +30,9 @@ use yii\bootstrap\ActiveForm;
 
             <?= $form->field($modelUser, 'password')->passwordInput(['maxlength' => true]) ?>
 
-            <?= $form->field($modelUser, 'name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($modelUser, 'name')->textInput(['maxlength' => true, 'style' => "text-transform:capitalize"]) ?>
 
-            <?= $form->field($modelUser, 'surname')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($modelUser, 'surname')->textInput(['maxlength' => true, 'style' => "text-transform:capitalize"]) ?>
 
             <?= $form->field($modelUser, 'sex')->textInput(['maxlength' => true])->dropDownList($modelUser->getGender()) ?>
 
@@ -39,9 +40,9 @@ use yii\bootstrap\ActiveForm;
         </div>
         <?php if ($modelAddress) : ?>
             <?= "<div class=\"col-md-6\">" ?>
-                <?= $form->field($modelAddress, 'index')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($modelAddress, 'index')->textInput(['maxlength' => true, 'type' => 'number']) ?>
 
-                <?= $form->field($modelAddress, 'country')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($modelAddress, 'country')->textInput(['maxlength' => true, 'style' => 'text-transform: uppercase']) ?>
 
                 <?= $form->field($modelAddress, 'city')->textInput(['maxlength' => true]) ?>
 

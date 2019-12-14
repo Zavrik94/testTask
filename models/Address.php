@@ -32,9 +32,11 @@ class Address extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'house_number', 'flat_number'], 'default', 'value' => null],
+            [['flat_number'], 'default', 'value' => null],
+            [['country'], 'string', 'max' => 2],
             [['user_id', 'house_number', 'flat_number'], 'integer'],
-            [['index', 'country', 'city', 'street'], 'string', 'max' => 255],
+            [['index', 'city', 'street'], 'string', 'max' => 255],
+            [['user_id', 'country', 'index', 'city', 'street', 'house_number'], 'required']
         ];
     }
 
