@@ -74,16 +74,18 @@ class UserController extends Controller
 
             $modelUser->create_date = 'now()';
             $modelUser->password = Yii::$app->getSecurity()->generatePasswordHash($modelUser->password);
-            $modelAddress->user_id = $modelUser->id;
-            if ($modelUser->validate() && $modelUser->save() && $modelAddress->save()) {
-                return $this->redirect(['view', 'id' => $modelUser->id]);
+            $modelUser->name = ucwords($modelUser->name);
+            $modelUser->surname = ucwords($modelUser->surname);
+            if ($modelUser->validate() && $modelUser->save()) {
+                $modelAddress->user_id = $modelUser->id;
+                if ($modelAddress->save())
+                    return $this->redirect(['view', 'id' => $modelUser->id]);
+                else
+                    $modelUser->password = '';
             }
-            else
-                return $this->render('create', [
-                    'modelUser' => $modelUser,
-                    'modelAddress' => $modelAddress,
-                    'isUpdate' => false
-                ]);
+            else {
+                $modelUser->password = '';
+            }
         }
 
         return $this->render('create', [

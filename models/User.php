@@ -21,7 +21,7 @@ class User extends \yii\db\ActiveRecord
 {
     private const MALE = 'Male',
         FEMALE = 'Female',
-        INDEFINED = 'Indefined';
+        INDEFINED = 'Not set';
 
     /**
      * {@inheritdoc}
@@ -42,7 +42,10 @@ class User extends \yii\db\ActiveRecord
             [['login'],'string', 'min' => 4, 'max' => 255],
             [['password'],'string', 'min' => 6, 'max' => 255],
             [['name'],'string', 'max' => 255],
-            [['login', 'email'], 'unique', 'targetClass' => self::className(), 'message' => '{attribute}:{value} already exists!']
+            [['login', 'email'], 'unique', 'targetClass' => self::className(), 'message' => '{attribute}:{value} already exists!'],
+            [['login', 'name', 'surname', 'email'], 'required'],
+            [['password'], 'required','on' => 'create'],
+            [['sex'], 'default', 'value' => 'Not set']
             //[['surname'], 'filter'=>'ucfirst'],
             //[['email'], 'unique', 'email'],
 

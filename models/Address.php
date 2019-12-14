@@ -34,7 +34,7 @@ class Address extends \yii\db\ActiveRecord
         return [
             [['flat_number'], 'default', 'value' => null],
             [['country'], 'string', 'max' => 2],
-            [['user_id', 'house_number', 'flat_number'], 'integer'],
+            [['user_id', 'flat_number', 'index'], 'integer'],
             [['index', 'city', 'street'], 'string', 'max' => 255],
             [['user_id', 'country', 'index', 'city', 'street', 'house_number'], 'required']
         ];

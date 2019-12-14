@@ -34,7 +34,7 @@ $this->title = $model->id;
             'street',
             'house_number',
             'flat_number',
-        ],
+        ]
     ]) ?>
 
 </div>

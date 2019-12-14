@@ -50,6 +50,13 @@ $config = [
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
+        'formatter' => [
+            'class' => yii\i18n\Formatter::class,
+            'dateFormat' => 'dd MMMM yyyy',
+            'defaultTimeZone' => 'Europe/Kiev',
+            'datetimeFormat' => 'php: d-m-Y H:m',
+            'locale' => 'ru'
+        ]
     ],
     'params' => $params,
 ];
