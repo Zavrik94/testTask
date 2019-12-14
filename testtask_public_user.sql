@@ -1,0 +1,1 @@
+INSERT INTO public."user" (id, login, password, name, surname, sex, create_date, email) VALUES (31, 'test', '$2y$13$lNLnXKhgHmYAnrzu.P5VZOF46gRnFgH57nTjF7fg1JyKAJzoSYBVi', 'Test', 'Test', 'Male', '2019-12-14 16:29:31', 'test@test');

@@ -11,6 +11,7 @@ use app\models\User;
  */
 class UserSearch extends User
 {
+    const SECONDS_IN_DAY = 86400;
     /**
      * {@inheritdoc}
      */
@@ -60,8 +61,13 @@ class UserSearch extends User
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'create_date' => $this->create_date,
         ]);
+
+        if($this->create_date){
+            $date =  new \DateTime($this->create_date);
+            $start = $date->getTimestamp();
+            $query->andFilterWhere(['between', 'create_date', date('Y-m-d', $start), date('Y-m-d', $start + self::SECONDS_IN_DAY)]);
+        }
 
         $query->andFilterWhere(['ilike', 'login', $this->login])
             ->andFilterWhere(['ilike', 'password', $this->password])

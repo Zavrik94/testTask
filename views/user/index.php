@@ -5,6 +5,7 @@ use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\UserSearch */
@@ -35,7 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'surname',
             'sex',
-            'create_date',
+            'create_date' => [
+                'attribute' => 'create_date',
+                'value' => static function ($model) {
+                    return date('d-m-Y H:i', strtotime($model['create_date']));
+                },
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute'=>'create_date',
+                    'clientOptions' => [
+                        'autoclose' => true,
+                        'format' => 'dd-mm-yyyy'
+                    ]
+                ]),
+            ],
             'email:email',
 
             ['class' => ActionColumn::class],

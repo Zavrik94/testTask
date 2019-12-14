@@ -34,7 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'surname',
             'sex',
-            'create_date:datetime',
+            'create_date' => [
+                'attribute' => 'create_date',
+                'value' => static function ($model) {
+                    return date('d-m-Y H:i', strtotime($model['create_date']));
+                },
+            ],
             'email:email',
         ],
     ]) ?>

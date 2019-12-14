@@ -138,7 +138,7 @@ class UserController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Address::deleteAll(['user_id' => $id]);
         return $this->redirect(['index']);
     }
 
